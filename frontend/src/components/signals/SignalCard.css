@@ -1,0 +1,30 @@
+.signal-card {
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.signal-card:hover { transform: translateY(-2px); }
+
+.signal-card--buy  { border-top: 2px solid var(--accent-green); }
+.signal-card--sell { border-top: 2px solid var(--accent-red); }
+.signal-card--hold { border-top: 2px solid var(--accent-yellow); }
+
+.signal-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.signal-ticker {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.signal-price {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
