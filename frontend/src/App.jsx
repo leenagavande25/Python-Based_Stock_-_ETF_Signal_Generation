@@ -1,8 +1,6 @@
 import { useState } from "react";
 import Dashboard from "./pages/Dashboard";
 import StockDetail from "./pages/StockDetail";
-import Backtest from "./pages/Backtest";
-import ModelsStatus from "./pages/ModelsStatus";
 import Navbar from "./components/Navbar";
 
 export default function App() {

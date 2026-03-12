@@ -1,8 +1,6 @@
 export default function Navbar({ page, navigate }) {
   const links = [
     { id: "dashboard", label: "Dashboard" },
-    { id: "backtest",  label: "Backtest"  },
-    { id: "models",    label: "Models"    },
   ];
 
   return (
