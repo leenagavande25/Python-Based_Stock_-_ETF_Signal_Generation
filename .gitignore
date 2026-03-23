@@ -1,0 +1,43 @@
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+dist/
+build/
+*.spec
+
+# ── Virtual environment ───────────────────────────────────────────────────────
+venv/
+.venv/
+env/
+ENV/
+
+# ── Environment variables (NEVER commit secrets) ──────────────────────────────
+.env
+*.env
+
+# ── ML models (large .pkl files — regen by running train_models.py) ──────────
+models/*.pkl
+
+# ── Node / Frontend ───────────────────────────────────────────────────────────
+node_modules/
+FastAPI/frontend/node_modules/
+FastAPI/frontend/dist/
+
+# ── yfinance cache ────────────────────────────────────────────────────────────
+*.db
+*.sqlite
+*.sqlite3
+yfinance_tz_cache/
+
+# ── IDE / OS ──────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.DS_Store
+Thumbs.db
+
+# ── Logs ──────────────────────────────────────────────────────────────────────
+*.log

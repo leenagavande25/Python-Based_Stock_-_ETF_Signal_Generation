@@ -1,0 +1,73 @@
+services:
+
+  # ──────────────────────────────────────────
+  # 1. BACKEND — FastAPI
+  # ──────────────────────────────────────────
+  - type: web
+    name: signalai-backend
+    runtime: python
+    region: singapore
+    plan: starter
+
+    rootDir: .
+
+    buildCommand: pip install -r requirements.txt
+
+    # app/main.py contains the FastAPI app object named "app"
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+
+    # Persistent disk — trained .pkl files survive restarts and redeploys
+    disk:
+      name: signalai-models
+      mountPath: /var/data
+      sizeGB: 1
+
+    envVars:
+      # Set these manually in Render dashboard → Environment
+      # Never put real values here — this file goes in git
+      - key: EMAIL_USER
+        sync: false
+
+      - key: EMAIL_PASSWORD
+        sync: false
+
+      # Points MODEL_DIR to the persistent disk instead of repo folder
+      - key: MODEL_DIR
+        value: /var/data/models
+
+      # Set this after frontend deploys so CORS works
+      # e.g. https://signalai-frontend.onrender.com
+      - key: FRONTEND_URL
+        sync: false
+
+      - key: PYTHON_VERSION
+        value: 3.11.0
+
+    healthCheckPath: /
+
+
+  # ──────────────────────────────────────────
+  # 2. FRONTEND — React / Vite
+  # ──────────────────────────────────────────
+  - type: static
+    name: signalai-frontend
+    region: singapore
+
+    rootDir: frontend
+
+    buildCommand: npm install && npm run build
+
+    # Vite builds into frontend/dist
+    staticPublishPath: dist
+
+    envVars:
+      # Set this to your backend Render URL after backend deploys
+      # e.g. https://signalai-backend.onrender.com
+      - key: VITE_API_BASE
+        sync: false
+
+    # Fixes page-not-found on refresh for React SPA
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
