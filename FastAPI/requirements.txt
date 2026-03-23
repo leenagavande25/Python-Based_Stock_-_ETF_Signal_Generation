@@ -5,5 +5,8 @@ pandas
 numpy
 pydantic
 scikit-learn
+xgboost
+lightgbm
 apscheduler
 python-dotenv
+joblib
